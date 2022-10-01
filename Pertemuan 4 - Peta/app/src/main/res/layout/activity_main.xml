@@ -11,28 +11,27 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_restaurant_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
-        android:backgroundTint="#ff0000"
-        app:tint="#ffffff"
-        />
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_restaurant_24"
+        android:tint="@color/white"
+        android:backgroundTint="#812727"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_hospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_local_hospital_24"
-        app:layout_constraintBottom_toTopOf="@id/fab_restaurant"
+        app:layout_constraintBottom_toTopOf="@+id/fab_restaurant"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
-        android:backgroundTint="#8BC34A"
-        app:tint="#ffffff"
-        />
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_local_hospital_24"
+        android:tint="@color/white"
+        android:backgroundTint="#1E5C20"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
