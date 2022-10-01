@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fl_reataurant"
+        android:id="@+id/fab_restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,10 +24,10 @@
         android:backgroundTint="#812727"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fl_hospital"
+        android:id="@+id/fab_hospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/fl_reataurant"
+        app:layout_constraintBottom_toTopOf="@+id/fab_restaurant"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
         android:src="@drawable/ic_local_hospital_24"
