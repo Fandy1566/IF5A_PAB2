@@ -1,22 +1,18 @@
 package com.if5a.peta;
 
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Lokasi {
-
+public class lokasi {
     private String nama;
     private LatLng latLng;
 
-    public Lokasi(){
 
+    public lokasi() {
     }
 
-    public Lokasi(String nama, LatLng latLng){
-
+    public lokasi(String nama, LatLng latlng) {
+        this.nama = nama;
+        this.latLng = latlng;
     }
 
     public String getNama() {
@@ -34,6 +30,4 @@ public class Lokasi {
     public void setLatLng(LatLng latLng) {
         this.latLng = latLng;
     }
-
-
 }
