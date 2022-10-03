@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.if5a.note.databinding.ActivityMainBinding;
@@ -26,6 +27,26 @@ public class MainActivity extends AppCompatActivity {
 
         path = getFilesDir();
 
+        binding.btnNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                newFile();
+            }
+        });
+
+        binding.btnOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFile();
+            }
+        });
+
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveFile();
+            }
+        });
     }
 
     // Clear semua data yang ditampilkan
