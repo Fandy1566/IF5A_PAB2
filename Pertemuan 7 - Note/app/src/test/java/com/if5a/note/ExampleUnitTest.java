@@ -1,4 +1,4 @@
-package com.if5b.peta;
+package com.if5a.note;
 
 import org.junit.Test;
 
