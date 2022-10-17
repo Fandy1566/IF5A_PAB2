@@ -1,6 +1,7 @@
 package com.if5a.kamus.ui.home;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.if5a.kamus.adapters.KamusViewAdapter;
+import com.if5a.kamus.databases.KamusHelper;
 import com.if5a.kamus.databinding.FragmentHomeBinding;
+import com.if5a.kamus.models.Kamus;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private KamusViewAdapter kamusViewAdapter;
+    private KamusHelper kamusHelper;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -24,9 +33,36 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        kamusHelper = new KamusHelper(getActivity());
+        kamusViewAdapter = new KamusViewAdapter(getActivity());
+        binding.rvKamus.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.rvKamus.setAdapter(kamusViewAdapter);
+
+        getAllData();
+
+        binding.btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strSearch = binding.etSearch.getText().toString();
+
+                if(TextUtils.isEmpty(strSearch)){
+                    getAllData();
+                } else {
+                    kamusHelper.open();
+                    ArrayList<Kamus> kamus = kamusHelper.getAllDataEnglishIndonesia();
+                    kamusHelper.close();
+                    kamusViewAdapter.setData(kamus);
+                }
+            }
+        });
         return root;
+    }
+
+    private void getAllData() {
+        kamusHelper.open();
+        ArrayList<Kamus> kamus = kamusHelper.getAllDataEnglishIndonesia();
+        kamusHelper.close();
+        kamusViewAdapter.setData(kamus);
     }
 
     @Override
