@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
                     getAllData();
                 } else {
                     kamusHelper.open();
-                    ArrayList<Kamus> kamus = kamusHelper.getAllDataEnglishIndonesia();
+                    ArrayList<Kamus> kamus = kamusHelper.getAllDataEnglishIndonesiaByTitle(strSearch);
                     kamusHelper.close();
                     kamusViewAdapter.setData(kamus);
                 }

@@ -36,12 +36,15 @@ public class KamusViewAdapter extends RecyclerView.Adapter<KamusViewAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull KamusViewAdapter.ViewHolder holder, int position) {
+        int pos = holder.getAdapterPosition();
 
+        holder.tvTitle.setText(data.get(pos).getTitle());
+        holder.tvDescription.setText(data.get(pos).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
