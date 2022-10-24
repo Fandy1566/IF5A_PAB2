@@ -55,6 +55,7 @@ public class KamusViewAdapter extends RecyclerView.Adapter<KamusViewAdapter.View
 
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDescription = itemView.findViewById(R.id.tv_description);
+
         }
     }
 }
