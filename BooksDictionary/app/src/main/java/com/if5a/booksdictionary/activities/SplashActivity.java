@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.if5a.booksdictionary.R;
 import com.if5a.booksdictionary.databases.BooksHelper;
@@ -55,19 +56,29 @@ public class SplashActivity extends AppCompatActivity {
             Boolean firstRun = appPreference.getFirstRun();
 
             if (firstRun) {
-                ArrayList<BooksDictionary> kamusEnglishIndonesia = preLoadRawBooks();
+
+                ArrayList<BooksDictionary> booksDictionary = preLoadRawBooks();
                 booksHelper.open();
 
                 double progressMaxInsert = 80.0;
-                double progressDiff = (progressMaxInsert - progress) / kamusEnglishIndonesia.size();
+                double progressDiff = (progressMaxInsert - progress) / booksDictionary.size();
                 progress = 30;
                 publishProgress((int) progress);
 
-                for (BooksDictionary books : kamusEnglishIndonesia) {
-                    booksHelper.insertDataBooksDictionary(books);
-                    progress += progressDiff;
-                    publishProgress((int) progress);
+                booksHelper.beginTransaction();
+
+                try {
+                    for (BooksDictionary books : booksDictionary) {
+                        booksHelper.insertDataBooksDictionary(books);
+                        progress += progressDiff;
+                        publishProgress((int) progress);
+                    }
+                    booksHelper.setTransactionSuccess();
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
+
+                booksHelper.endTransaction();
 
                 booksHelper.close();
                 appPreference.setFirstRun(false);
@@ -97,24 +108,16 @@ public class SplashActivity extends AppCompatActivity {
 
             try {
                 Resources resources = getResources();
-                InputStream raw_dictionary = resources.openRawResource(R.raw.Books);
+                InputStream raw_dictionary = resources.openRawResource(R.raw.books);
 
                 bufferedReader = new BufferedReader(new InputStreamReader(raw_dictionary));
 
                 int count = 0;
                 do {
                     line = bufferedReader.readLine();
-                    String[] splitted = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                    String[] splitted = line.split(",");
 
-                    BooksDictionary books = new BooksDictionary();
-                    books.setISBN(splitted[0]);
-                    books.setBook_title(splitted[1]);
-                    books.setBook_Author(splitted[2]);
-                    books.setYear_of_Publish(splitted[3]);
-                    books.setPublisher(splitted[4]);
-                    books.setImage_url_s(splitted[5]);
-                    books.setImage_url_m(splitted[6]);
-                    books.setImage_url_l(splitted[7]);
+                    BooksDictionary books = new BooksDictionary(splitted[0],splitted[1], splitted[2], splitted[3],splitted[4],splitted[5],splitted[6],splitted[7]);
 
                     booksArrayList.add(books);
                     count++;

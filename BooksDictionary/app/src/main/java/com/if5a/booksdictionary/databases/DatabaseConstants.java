@@ -12,6 +12,6 @@ public class DatabaseConstants {
         static String Publisher = "publisher";
         static String image_url_s = "image_url_s";
         static String image_url_m = "image_url_m";
-        static String image_url_l = "image_url_m";
+        static String image_url_l = "image_url_l";
     }
 }

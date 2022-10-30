@@ -44,7 +44,7 @@ public class BooksHelper {
 
     public ArrayList<BooksDictionary> getAllDataBooksDictionary(){
         Cursor cursor = database.query(TABLE_BOOKS_DICTIONARY, null, null,
-                null,null, null, _ID + " ASC", null);
+                null,null, null, _ID + " ASC","100");
         cursor.moveToFirst();
         ArrayList<BooksDictionary> arrayList = new ArrayList<>();
         BooksDictionary booksDictionary;
@@ -69,9 +69,9 @@ public class BooksHelper {
         return arrayList;
     }
 
-    public ArrayList<BooksDictionary> getAllDataEnglishIndonesiaByTitle(String title){
+    public ArrayList<BooksDictionary> getAllDataBooksDictionaryByTitle(String title){
         Cursor cursor = database.query(TABLE_BOOKS_DICTIONARY, null, Book_title + " LIKE ?",
-                new String[]{"%"+ title + "%"},null, null, _ID + " ASC", null);
+                new String[]{"%"+ title + "%"},null, null, _ID + " ASC", "100");
         cursor.moveToFirst();
         ArrayList<BooksDictionary> arrayList = new ArrayList<>();
         BooksDictionary booksDictionary;
@@ -122,7 +122,7 @@ public class BooksHelper {
         return database.update(TABLE_BOOKS_DICTIONARY, cv, _ID + " ='" + booksDictionary.getId() + "'", null);
     }
 
-    public long deleteDataEnglishIndonesia(int id) {
+    public long deleteDataBooksDictionary(int id) {
         return database.delete(TABLE_BOOKS_DICTIONARY, _ID + " ='" + id + "'", null);
     }
 

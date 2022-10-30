@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">KamusBaru</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Makanan</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="app_first_run">first_run</string>
+</resources>

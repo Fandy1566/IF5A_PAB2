@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    android:padding="16dp"
+    tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
         android:id="@+id/ll_search"
@@ -25,16 +26,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.2"
-            android:background="@color/purple_500"
+            android:backgroundTint="@color/purple_500"
             android:text="Cari"
             android:textColor="@color/white"/>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_books"
+        android:id="@+id/rv_kamus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_search"
+        android:layout_below="@id/ll_search"
         android:layout_marginTop="8dp"/>
 
 </RelativeLayout>

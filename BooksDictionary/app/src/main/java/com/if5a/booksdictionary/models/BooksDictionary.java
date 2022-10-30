@@ -5,34 +5,15 @@ import android.os.Parcelable;
 
 public class BooksDictionary implements Parcelable {
     private int id;
+    private String ISBN;
+    private String Book_title;
+    private String Book_Author;
+    private String Year_of_Publish;
+    private String Publisher;
 
-    public BooksDictionary(){
+    public BooksDictionary() {
 
     }
-
-    protected BooksDictionary(Parcel in) {
-        id = in.readInt();
-        ISBN = in.readString();
-        Book_title = in.readString();
-        Book_Author = in.readString();
-        Year_of_Publish = in.readString();
-        Publisher = in.readString();
-        image_url_s = in.readString();
-        image_url_m = in.readString();
-        image_url_l = in.readString();
-    }
-
-    public static final Creator<BooksDictionary> CREATOR = new Creator<BooksDictionary>() {
-        @Override
-        public BooksDictionary createFromParcel(Parcel in) {
-            return new BooksDictionary(in);
-        }
-
-        @Override
-        public BooksDictionary[] newArray(int size) {
-            return new BooksDictionary[size];
-        }
-    };
 
     public int getId() {
         return id;
@@ -41,8 +22,6 @@ public class BooksDictionary implements Parcelable {
     public void setId(int id) {
         this.id = id;
     }
-
-    private String ISBN;
 
     public String getISBN() {
         return ISBN;
@@ -108,13 +87,57 @@ public class BooksDictionary implements Parcelable {
         this.image_url_l = image_url_l;
     }
 
-    private String Book_title;
-    private String Book_Author;
-    private String Year_of_Publish;
-    private String Publisher;
     private String image_url_s;
+
+    public BooksDictionary(int id, String ISBN, String book_title, String book_Author, String year_of_Publish, String publisher, String image_url_s, String image_url_m, String image_url_l) {
+        this.id = id;
+        this.ISBN = ISBN;
+        Book_title = book_title;
+        Book_Author = book_Author;
+        Year_of_Publish = year_of_Publish;
+        Publisher = publisher;
+        this.image_url_s = image_url_s;
+        this.image_url_m = image_url_m;
+        this.image_url_l = image_url_l;
+    }
+
+    public BooksDictionary(String ISBN, String book_title, String book_Author, String year_of_Publish, String publisher, String image_url_s, String image_url_m, String image_url_l) {
+        this.ISBN = ISBN;
+        Book_title = book_title;
+        Book_Author = book_Author;
+        Year_of_Publish = year_of_Publish;
+        Publisher = publisher;
+        this.image_url_s = image_url_s;
+        this.image_url_m = image_url_m;
+        this.image_url_l = image_url_l;
+    }
+
     private String image_url_m;
     private String image_url_l;
+
+    public BooksDictionary(Parcel in) {
+        id = in.readInt();
+        ISBN = in.readString();
+        Book_title = in.readString();
+        Book_Author = in.readString();
+        Year_of_Publish = in.readString();
+        Publisher = in.readString();
+        image_url_s = in.readString();
+        image_url_m = in.readString();
+        image_url_l = in.readString();
+    }
+
+    public static final Creator<BooksDictionary> CREATOR = new Creator<BooksDictionary>() {
+        @Override
+        public BooksDictionary createFromParcel(Parcel in) {
+            return new BooksDictionary(in);
+        }
+
+        @Override
+        public BooksDictionary[] newArray(int size) {
+            return new BooksDictionary[size];
+        }
+    };
 
     @Override
     public int describeContents() {
