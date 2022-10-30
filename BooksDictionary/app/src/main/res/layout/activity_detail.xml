@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".activities.DetailActivity">
 
+    <ImageView
+        android:id="@+id/iv_detail_image"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_baseline_do_not_disturb_24"/>
+
+    <TextView
+        android:id="@+id/tv_detail_title"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:textSize="30sp"
+        android:layout_marginStart="10dp"
+        android:text="Judul Buku"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"/>
+
+    <TextView
+        android:id="@+id/tv_detail_publisher"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:textSize="30sp"
+        android:layout_marginStart="10dp"
+        android:text="Judul Buku"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_detail_image"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

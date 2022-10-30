@@ -1,6 +1,7 @@
 package com.if5a.booksdictionary.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.if5a.booksdictionary.R;
 import com.if5a.booksdictionary.models.BooksDictionary;
+import com.if5a.booksdictionary.utilities.OnItemClickListener;
 
 import java.util.ArrayList;
 
 public class BooksViewAdapter extends RecyclerView.Adapter<BooksViewAdapter.ViewHolder> {
     private Context context;
     private ArrayList<BooksDictionary> data = new ArrayList<>();
+    private OnItemClickListener itemClickListener;
 
     public BooksViewAdapter(Context context){
         this.context = context;
@@ -41,6 +45,17 @@ public class BooksViewAdapter extends RecyclerView.Adapter<BooksViewAdapter.View
 
         holder.tvTitle.setText(data.get(pos).getBook_title());
         holder.tvBookAuthor.setText(data.get(pos).getBook_Author());
+        Glide.with(holder.itemView.getContext())
+                .load(data.get(pos).getImage_url_s())
+                .placeholder(R.drawable.ic_baseline_do_not_disturb_24)
+                .into(holder.ivImage);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemClickListener.onItemClick(data.get(pos), pos);
+            }
+        });
     }
 
     @Override

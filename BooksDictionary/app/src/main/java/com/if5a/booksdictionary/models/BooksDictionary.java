@@ -9,28 +9,13 @@ public class BooksDictionary implements Parcelable {
     public BooksDictionary(){
 
     }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    private String ISBN;
-    private String Book_title;
-    private String Book_Author;
-    private int Year_of_Publish;
-    private String Publisher;
-    private String image_url_s;
-    private String image_url_m;
-    private String image_url_l;
 
     protected BooksDictionary(Parcel in) {
+        id = in.readInt();
         ISBN = in.readString();
         Book_title = in.readString();
         Book_Author = in.readString();
-        Year_of_Publish = in.readInt();
+        Year_of_Publish = in.readString();
         Publisher = in.readString();
         image_url_s = in.readString();
         image_url_m = in.readString();
@@ -48,6 +33,16 @@ public class BooksDictionary implements Parcelable {
             return new BooksDictionary[size];
         }
     };
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private String ISBN;
 
     public String getISBN() {
         return ISBN;
@@ -73,11 +68,11 @@ public class BooksDictionary implements Parcelable {
         Book_Author = book_Author;
     }
 
-    public int getYear_of_Publish() {
+    public String getYear_of_Publish() {
         return Year_of_Publish;
     }
 
-    public void setYear_of_Publish(int year_of_Publish) {
+    public void setYear_of_Publish(String year_of_Publish) {
         Year_of_Publish = year_of_Publish;
     }
 
@@ -113,6 +108,14 @@ public class BooksDictionary implements Parcelable {
         this.image_url_l = image_url_l;
     }
 
+    private String Book_title;
+    private String Book_Author;
+    private String Year_of_Publish;
+    private String Publisher;
+    private String image_url_s;
+    private String image_url_m;
+    private String image_url_l;
+
     @Override
     public int describeContents() {
         return 0;
@@ -120,10 +123,11 @@ public class BooksDictionary implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(ISBN);
         parcel.writeString(Book_title);
         parcel.writeString(Book_Author);
-        parcel.writeInt(Year_of_Publish);
+        parcel.writeString(Year_of_Publish);
         parcel.writeString(Publisher);
         parcel.writeString(image_url_s);
         parcel.writeString(image_url_m);

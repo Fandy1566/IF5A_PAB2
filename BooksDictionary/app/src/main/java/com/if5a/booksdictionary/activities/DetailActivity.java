@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.if5a.booksdictionary.databinding.ActivityDetailBinding;
+import com.if5a.booksdictionary.models.BooksDictionary;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -16,5 +17,10 @@ public class DetailActivity extends AppCompatActivity {
 
         binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        BooksDictionary booksDictionary = getIntent().getParcelableExtra("EXTRA_BOOKS");
+
+        binding.tvDetailTitle.setText(booksDictionary.getBook_title());
+        binding.tvDetailPublisher.setText(booksDictionary.getPublisher());
     }
 }
