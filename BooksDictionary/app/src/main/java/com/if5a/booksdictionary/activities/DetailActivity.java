@@ -22,10 +22,14 @@ public class DetailActivity extends AppCompatActivity {
 
         BooksDictionary booksDictionary = getIntent().getParcelableExtra("EXTRA_BOOKS");
         binding.tvDetailTitle.setText(booksDictionary.getBook_title());
-        binding.tvDetailPublisher.setText(booksDictionary.getPublisher());
+        binding.tvDetailPublisher.setText("Publisher : "+booksDictionary.getPublisher());
         Glide.with(DetailActivity.this)
                 .load(booksDictionary.getImage_url_l())
                 .placeholder(R.drawable.ic_baseline_do_not_disturb_24)
                 .into(binding.ivDetailImage);
+        binding.tvYear.setText("Year : "+booksDictionary.getYear_of_Publish());
+        binding.tvIsbn.setText("ISBN : "+booksDictionary.getISBN());
+        binding.tvAuthor.setText("Author : "+booksDictionary.getBook_Author());
+
     }
 }

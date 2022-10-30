@@ -23,8 +23,8 @@ public class BooksViewAdapter extends RecyclerView.Adapter<BooksViewAdapter.View
     private ArrayList<BooksDictionary> data = new ArrayList<>();
     private OnItemClickListener itemClickListener;
 
-    public BooksViewAdapter(Context context){
-        this.context = context;
+    public BooksViewAdapter(OnItemClickListener<BooksDictionary> itemClickListener){
+        this.itemClickListener = itemClickListener;
     }
 
     public void setData(ArrayList<BooksDictionary> data){
@@ -42,18 +42,18 @@ public class BooksViewAdapter extends RecyclerView.Adapter<BooksViewAdapter.View
     @Override
     public void onBindViewHolder(@NonNull BooksViewAdapter.ViewHolder holder, int position) {
         int pos = holder.getAdapterPosition();
-
-        holder.tvTitle.setText(data.get(pos).getBook_title());
-        holder.tvBookAuthor.setText(data.get(pos).getBook_Author());
+        BooksDictionary booksDictionary = data.get(pos);
+        holder.tvTitle.setText(booksDictionary.getBook_title());
+        holder.tvBookAuthor.setText(booksDictionary.getBook_Author());
         Glide.with(holder.itemView.getContext())
-                .load(data.get(pos).getImage_url_s())
+                .load(booksDictionary.getImage_url_m())
                 .placeholder(R.drawable.ic_baseline_do_not_disturb_24)
                 .into(holder.ivImage);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                itemClickListener.onItemClick(data.get(pos), pos);
+                itemClickListener.onItemClick(booksDictionary, pos);
             }
         });
     }
