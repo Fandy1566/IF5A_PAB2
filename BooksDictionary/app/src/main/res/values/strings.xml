@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BooksDictionary</string>
+    <string name="app_first_run">first_run</string>
 </resources>

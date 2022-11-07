@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ISBN + " STRING(9) NOT NULL, "
             + Book_title + " TEXT NOT NULL, "
             + Book_Author+" TEXT NOT NULL,"
-            + Year_of_Publish+" INT(4) NOT NULL,"
+            + Year_of_Publish+" STRING(5) NOT NULL,"
             + Publisher+" TEXT NOT NULL,"
             + image_url_s+" TEXT NOT NULL,"
             + image_url_m+" TEXT NOT NULL,"

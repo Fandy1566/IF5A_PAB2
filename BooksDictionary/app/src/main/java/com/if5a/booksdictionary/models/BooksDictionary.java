@@ -5,10 +5,16 @@ import android.os.Parcelable;
 
 public class BooksDictionary implements Parcelable {
     private int id;
+    private String ISBN;
+    private String Book_title;
+    private String Book_Author;
+    private String Year_of_Publish;
+    private String Publisher;
 
-    public BooksDictionary(){
+    public BooksDictionary() {
 
     }
+
     public int getId() {
         return id;
     }
@@ -16,38 +22,6 @@ public class BooksDictionary implements Parcelable {
     public void setId(int id) {
         this.id = id;
     }
-
-    private String ISBN;
-    private String Book_title;
-    private String Book_Author;
-    private int Year_of_Publish;
-    private String Publisher;
-    private String image_url_s;
-    private String image_url_m;
-    private String image_url_l;
-
-    protected BooksDictionary(Parcel in) {
-        ISBN = in.readString();
-        Book_title = in.readString();
-        Book_Author = in.readString();
-        Year_of_Publish = in.readInt();
-        Publisher = in.readString();
-        image_url_s = in.readString();
-        image_url_m = in.readString();
-        image_url_l = in.readString();
-    }
-
-    public static final Creator<BooksDictionary> CREATOR = new Creator<BooksDictionary>() {
-        @Override
-        public BooksDictionary createFromParcel(Parcel in) {
-            return new BooksDictionary(in);
-        }
-
-        @Override
-        public BooksDictionary[] newArray(int size) {
-            return new BooksDictionary[size];
-        }
-    };
 
     public String getISBN() {
         return ISBN;
@@ -73,11 +47,11 @@ public class BooksDictionary implements Parcelable {
         Book_Author = book_Author;
     }
 
-    public int getYear_of_Publish() {
+    public String getYear_of_Publish() {
         return Year_of_Publish;
     }
 
-    public void setYear_of_Publish(int year_of_Publish) {
+    public void setYear_of_Publish(String year_of_Publish) {
         Year_of_Publish = year_of_Publish;
     }
 
@@ -113,6 +87,58 @@ public class BooksDictionary implements Parcelable {
         this.image_url_l = image_url_l;
     }
 
+    private String image_url_s;
+
+    public BooksDictionary(int id, String ISBN, String book_title, String book_Author, String year_of_Publish, String publisher, String image_url_s, String image_url_m, String image_url_l) {
+        this.id = id;
+        this.ISBN = ISBN;
+        Book_title = book_title;
+        Book_Author = book_Author;
+        Year_of_Publish = year_of_Publish;
+        Publisher = publisher;
+        this.image_url_s = image_url_s;
+        this.image_url_m = image_url_m;
+        this.image_url_l = image_url_l;
+    }
+
+    public BooksDictionary(String ISBN, String book_title, String book_Author, String year_of_Publish, String publisher, String image_url_s, String image_url_m, String image_url_l) {
+        this.ISBN = ISBN;
+        Book_title = book_title;
+        Book_Author = book_Author;
+        Year_of_Publish = year_of_Publish;
+        Publisher = publisher;
+        this.image_url_s = image_url_s;
+        this.image_url_m = image_url_m;
+        this.image_url_l = image_url_l;
+    }
+
+    private String image_url_m;
+    private String image_url_l;
+
+    public BooksDictionary(Parcel in) {
+        id = in.readInt();
+        ISBN = in.readString();
+        Book_title = in.readString();
+        Book_Author = in.readString();
+        Year_of_Publish = in.readString();
+        Publisher = in.readString();
+        image_url_s = in.readString();
+        image_url_m = in.readString();
+        image_url_l = in.readString();
+    }
+
+    public static final Creator<BooksDictionary> CREATOR = new Creator<BooksDictionary>() {
+        @Override
+        public BooksDictionary createFromParcel(Parcel in) {
+            return new BooksDictionary(in);
+        }
+
+        @Override
+        public BooksDictionary[] newArray(int size) {
+            return new BooksDictionary[size];
+        }
+    };
+
     @Override
     public int describeContents() {
         return 0;
@@ -120,10 +146,11 @@ public class BooksDictionary implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
         parcel.writeString(ISBN);
         parcel.writeString(Book_title);
         parcel.writeString(Book_Author);
-        parcel.writeInt(Year_of_Publish);
+        parcel.writeString(Year_of_Publish);
         parcel.writeString(Publisher);
         parcel.writeString(image_url_s);
         parcel.writeString(image_url_m);

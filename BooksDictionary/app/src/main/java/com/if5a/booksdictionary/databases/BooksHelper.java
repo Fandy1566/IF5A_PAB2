@@ -44,7 +44,7 @@ public class BooksHelper {
 
     public ArrayList<BooksDictionary> getAllDataBooksDictionary(){
         Cursor cursor = database.query(TABLE_BOOKS_DICTIONARY, null, null,
-                null,null, null, _ID + " ASC", null);
+                null,null, null, _ID + " ASC","100");
         cursor.moveToFirst();
         ArrayList<BooksDictionary> arrayList = new ArrayList<>();
         BooksDictionary booksDictionary;
@@ -55,7 +55,7 @@ public class BooksHelper {
                 booksDictionary.setISBN(cursor.getString(cursor.getColumnIndexOrThrow(ISBN)));
                 booksDictionary.setBook_title(cursor.getString(cursor.getColumnIndexOrThrow(Book_title)));
                 booksDictionary.setBook_Author(cursor.getString(cursor.getColumnIndexOrThrow(Book_Author)));
-                booksDictionary.setYear_of_Publish(cursor.getInt(cursor.getColumnIndexOrThrow(Year_of_Publish)));
+                booksDictionary.setYear_of_Publish(cursor.getString(cursor.getColumnIndexOrThrow(Year_of_Publish)));
                 booksDictionary.setPublisher(cursor.getString(cursor.getColumnIndexOrThrow(Publisher)));
                 booksDictionary.setImage_url_s(cursor.getString(cursor.getColumnIndexOrThrow(image_url_s)));
                 booksDictionary.setImage_url_m(cursor.getString(cursor.getColumnIndexOrThrow(image_url_m)));
@@ -69,9 +69,9 @@ public class BooksHelper {
         return arrayList;
     }
 
-    public ArrayList<BooksDictionary> getAllDataEnglishIndonesiaByTitle(String title){
+    public ArrayList<BooksDictionary> getAllDataBooksDictionaryByTitle(String title){
         Cursor cursor = database.query(TABLE_BOOKS_DICTIONARY, null, Book_title + " LIKE ?",
-                new String[]{"%"+ title + "%"},null, null, _ID + " ASC", null);
+                new String[]{"%"+ title + "%"},null, null, _ID + " ASC", "100");
         cursor.moveToFirst();
         ArrayList<BooksDictionary> arrayList = new ArrayList<>();
         BooksDictionary booksDictionary;
@@ -82,7 +82,7 @@ public class BooksHelper {
                 booksDictionary.setISBN(cursor.getString(cursor.getColumnIndexOrThrow(ISBN)));
                 booksDictionary.setBook_title(cursor.getString(cursor.getColumnIndexOrThrow(Book_title)));
                 booksDictionary.setBook_Author(cursor.getString(cursor.getColumnIndexOrThrow(Book_Author)));
-                booksDictionary.setYear_of_Publish(cursor.getInt(cursor.getColumnIndexOrThrow(Year_of_Publish)));
+                booksDictionary.setYear_of_Publish(cursor.getString(cursor.getColumnIndexOrThrow(Year_of_Publish)));
                 booksDictionary.setPublisher(cursor.getString(cursor.getColumnIndexOrThrow(Publisher)));
                 booksDictionary.setImage_url_s(cursor.getString(cursor.getColumnIndexOrThrow(image_url_s)));
                 booksDictionary.setImage_url_m(cursor.getString(cursor.getColumnIndexOrThrow(image_url_m)));
@@ -94,6 +94,36 @@ public class BooksHelper {
         }
         cursor.close();
         return arrayList;
+    }
+    public long insertDataBooksDictionary(BooksDictionary booksDictionary) {
+        ContentValues cv = new ContentValues();
+        cv.put(ISBN, booksDictionary.getISBN());
+        cv.put(Book_title, booksDictionary.getBook_title());
+        cv.put(Book_Author, booksDictionary.getBook_Author());
+        cv.put(Year_of_Publish, booksDictionary.getYear_of_Publish());
+        cv.put(Publisher, booksDictionary.getPublisher());
+        cv.put(image_url_s, booksDictionary.getImage_url_s());
+        cv.put(image_url_m, booksDictionary.getImage_url_m());
+        cv.put(image_url_l, booksDictionary.getImage_url_l());
+
+        return database.insert(TABLE_BOOKS_DICTIONARY, null, cv);
+    }
+
+    public long updateDataBooksDictionary(BooksDictionary booksDictionary) {
+        ContentValues cv = new ContentValues();
+        cv.put(ISBN, booksDictionary.getISBN());
+        cv.put(Book_title, booksDictionary.getBook_title());
+        cv.put(Book_Author, booksDictionary.getBook_Author());
+        cv.put(Year_of_Publish, booksDictionary.getYear_of_Publish());
+        cv.put(Publisher, booksDictionary.getPublisher());
+        cv.put(image_url_s, booksDictionary.getImage_url_s());
+        cv.put(image_url_m, booksDictionary.getImage_url_m());
+        cv.put(image_url_l, booksDictionary.getImage_url_l());
+        return database.update(TABLE_BOOKS_DICTIONARY, cv, _ID + " ='" + booksDictionary.getId() + "'", null);
+    }
+
+    public long deleteDataBooksDictionary(int id) {
+        return database.delete(TABLE_BOOKS_DICTIONARY, _ID + " ='" + id + "'", null);
     }
 
     public void beginTransaction(){
