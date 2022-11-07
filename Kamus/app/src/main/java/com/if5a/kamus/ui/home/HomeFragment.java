@@ -38,6 +38,8 @@ public class HomeFragment extends Fragment {
         binding.rvKamus.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvKamus.setAdapter(kamusViewAdapter);
 
+
+
         getAllData();
 
         binding.btnSearch.setOnClickListener(new View.OnClickListener() {
