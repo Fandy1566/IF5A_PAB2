@@ -9,11 +9,11 @@ import androidx.loader.content.AsyncTaskLoader;
 import com.if5a.pab2.contact.databases.UserDatabase;
 import com.if5a.pab2.contact.entities.User;
 
-public class DeleteLoader extends AsyncTaskLoader {
+public class DeleteLoader extends AsyncTaskLoader<Integer> {
     private int userId;
     private UserDatabase db;
 
-    public DeleteLoader(@NonNull Context context) {
+    public DeleteLoader(@NonNull Context context,int userId) {
         super(context);
         this.userId = userId;
         db = UserDatabase.getInstance(context);
@@ -21,7 +21,7 @@ public class DeleteLoader extends AsyncTaskLoader {
 
     @Nullable
     @Override
-    public Object loadInBackground() {
+    public Integer loadInBackground() {
         return db.userDao().deleteUser(userId);
     }
 }
