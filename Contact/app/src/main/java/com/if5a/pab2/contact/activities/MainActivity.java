@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onLoadFinished(@NonNull Loader<Integer> loader, Integer data) {
                 hideProgressBar();
+                Toast.makeText(MainActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
                 if (data != -1) {
                     itemDeleted();
                 }
