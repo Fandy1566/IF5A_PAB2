@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         binding.rvPost.setLayoutManager(new LinearLayoutManager(this));
         binding.rvPost.setAdapter(postViewAdapter);
 
+        
+
     }
 
     @Override
