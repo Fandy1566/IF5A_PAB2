@@ -26,21 +26,32 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.btnRegisterToLogin.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+                overridePendingTransition(0,0);
+                finish();
+            }
+        });
+
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = binding.etUsername.getText().toString();
-                String password = binding.etPassword.getText().toString();
-                String konfirmasiPassword = binding.etKonfrimasiPassword.getTransitionName().toString();
+                String username = binding.etRegisterUsername.getText().toString();
+                String password = binding.etRegisterPassword.getText().toString();
+                String konfirmasiPassword = binding.etKonfrimasiPassword.getText().toString();
 
                 boolean bolehRegister = true;
                 if (TextUtils.isEmpty(username)) {
                     bolehRegister = false;
-                    binding.etUsername.setError("Username tidak boleh kosong!");
+                    binding.etRegisterUsername.setError("Username tidak boleh kosong!");
                 }
                 if (TextUtils.isEmpty(password)) {
                     bolehRegister = false;
-                    binding.etPassword.setError("Password tidak boleh kosong!");
+                    binding.etRegisterPassword.setError("Password tidak boleh kosong!");
                 }
                 if (TextUtils.isEmpty(konfirmasiPassword)) {
                     bolehRegister = false;
@@ -52,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 if (password.length() < 6) {
                     bolehRegister = false;
-                    binding.etPassword.setError("Password minimal 6 karakter!");
+                    binding.etRegisterPassword.setError("Password minimal 6 karakter!");
                 }
                 if (bolehRegister){
                     register(username, password);
@@ -93,10 +104,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void showProgressBar() {
-        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.registerProgressBar.setVisibility(View.VISIBLE);
     }
     private void hideProgressBar() {
-        binding.progressBar.setVisibility(View.GONE);
+        binding.registerProgressBar.setVisibility(View.GONE);
     }
 
 }

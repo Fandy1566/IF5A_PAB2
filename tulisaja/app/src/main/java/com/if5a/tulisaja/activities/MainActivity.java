@@ -3,6 +3,7 @@ package com.if5a.tulisaja.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import com.if5a.tulisaja.databinding.ActivityMainBinding;
 import com.if5a.tulisaja.models.Post;
 import com.if5a.tulisaja.models.ValueData;
 import com.if5a.tulisaja.services.APIService;
+import com.if5a.tulisaja.services.OnItemClickListener;
 import com.if5a.tulisaja.services.Utilities;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private PostViewAdapter postViewAdapter;
     private List<Post> data = new ArrayList<>();
+    private OnItemClickListener<Post> itemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         postViewAdapter = new PostViewAdapter();
         binding.rvPost.setLayoutManager(new LinearLayoutManager(this));
         binding.rvPost.setAdapter(postViewAdapter);
-
-        
 
     }
 
